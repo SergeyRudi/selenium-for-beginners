@@ -14,7 +14,7 @@ public class NegativeTests {
 
 	@Parameters({ "username", "password", "expectedMessage"})
 	@Test(priority = 1,  groups = { "negativeTests", "smokeTests" })
-	public void negativeLoginTest() {
+	public void negativeLoginTest(String username, String password, String expectedErrorMassege) {
 		System.out.println("incorrectUsernameTest");
 		// Create driver
 
@@ -30,12 +30,12 @@ public class NegativeTests {
 		System.out.println("Page is opened.");
 
 		// enter negative username
-		WebElement username = driver.findElement(By.id("username"));
-		username.sendKeys("incorrect");
+		WebElement usernameElement = driver.findElement(By.id("username"));
+		usernameElement.sendKeys("incorrect");
 
 		// enter passwords
-		WebElement password = driver.findElement(By.name("password"));
-		password.sendKeys("SuperSecretPassword!");
+		WebElement passwordElement = driver.findElement(By.name("password"));
+		passwordElement.sendKeys("SuperSecretPassword!");
 
 		// click login button
 		WebElement logInButton = driver.findElement(By.tagName("button"));

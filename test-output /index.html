@@ -56,7 +56,7 @@
                 </li>
                 <li>
                   <a href="#" class="navigator-link " panel-name="testlist-NegativeTestsSuite">
-                    <span class="test-stats">1 test</span>
+                    <span class="test-stats">2 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,7 +93,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,7 +104,12 @@
                     <div class="method-list-content passed suite-NegativeTestsSuite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-NegativeTestsSuite" title="com.herokuapp.theinternet.NegativeTests" hash-for-method="incorrectUsernameTest">incorrectUsernameTest</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-NegativeTestsSuite" title="com.herokuapp.theinternet.NegativeTests" hash-for-method="negativeLoginTest(incorrect, SuperSecretPassword, Your username is invalid!)">negativeLoginTest(incorrect, SuperSecretPassword, Your username is invalid!)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-NegativeTestsSuite" title="com.herokuapp.theinternet.NegativeTests" hash-for-method="negativeLoginTest(tomsmith, Super!, Your password is invalid!)">negativeLoginTest(tomsmith, Super!, Your password is invalid!)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-NegativeTestsSuite -->
@@ -127,9 +132,18 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="incorrectUsernameTest">
-                  </a> <!-- incorrectUsernameTest -->
-                  <span class="method-name">incorrectUsernameTest</span>
+                  <a name="negativeLoginTest(incorrect, SuperSecretPassword, Your username is invalid!)">
+                  </a> <!-- negativeLoginTest(incorrect, SuperSecretPassword, Your username is invalid!) -->
+                  <span class="method-name">negativeLoginTest</span>
+                  <span class="parameters">(incorrect, SuperSecretPassword, Your username is invalid!)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="negativeLoginTest(tomsmith, Super!, Your password is invalid!)">
+                  </a> <!-- negativeLoginTest(tomsmith, Super!, Your password is invalid!) -->
+                  <span class="method-name">negativeLoginTest</span>
+                  <span class="parameters">(tomsmith, Super!, Your password is invalid!)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -144,15 +158,22 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;NegativeTestsSuite&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;NegativeTests&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;NegativeUsernameTests&quot;&gt;
+    &lt;parameter name=&quot;password&quot; value=&quot;SuperSecretPassword&quot;/&gt;
+    &lt;parameter name=&quot;expectedMessage&quot; value=&quot;Your username is invalid!&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;incorrect&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.herokuapp.theinternet.NegativeTests&quot;&gt;
-        &lt;methods&gt;
-          &lt;exclude name=&quot;incorrectPasswordTest&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- com.herokuapp.theinternet.NegativeTests --&gt;
+      &lt;class name=&quot;com.herokuapp.theinternet.NegativeTests&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- NegativeTests --&gt;
+  &lt;/test&gt; &lt;!-- NegativeUsernameTests --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;NegativePasswordTests&quot;&gt;
+    &lt;parameter name=&quot;password&quot; value=&quot;Super!&quot;/&gt;
+    &lt;parameter name=&quot;expectedMessage&quot; value=&quot;Your password is invalid!&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;tomsmith&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.herokuapp.theinternet.NegativeTests&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- NegativePasswordTests --&gt;
 &lt;/suite&gt; &lt;!-- NegativeTestsSuite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -164,7 +185,10 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">NegativeTests (1 class)</span>
+                <span class="test-name">NegativeUsernameTests (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">NegativePasswordTests (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -178,7 +202,7 @@
               <span class="test-group-name">negativeTests</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">incorrectUsernameTest</span>
+                <span class="method-in-group-name">negativeLoginTest</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -186,7 +210,7 @@
               <span class="test-group-name">smokeTests</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">incorrectUsernameTest</span>
+                <span class="method-in-group-name">negativeLoginTest</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -206,16 +230,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'incorrectUsernameTest')
+data.setCell(0, 1, 'negativeLoginTest')
 data.setCell(0, 2, 'com.herokuapp.theinternet.NegativeTests')
-data.setCell(0, 3, 6936);
+data.setCell(0, 3, 8384);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'negativeLoginTest')
+data.setCell(1, 2, 'com.herokuapp.theinternet.NegativeTests')
+data.setCell(1, 3, 6094);
 window.suiteTableData['NegativeTestsSuite']= { tableData: data, tableDiv: 'times-div-NegativeTestsSuite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 6 seconds</span>
+              <span class="suite-total-time">Total running time: 14 seconds</span>
               <div id="times-div-NegativeTestsSuite">
               </div> <!-- times-div-NegativeTestsSuite -->
             </div> <!-- times-div -->
@@ -230,16 +258,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-NegativeTestsSuite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.herokuapp.theinternet.NegativeTests</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">incorrectPasswordTest</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-NegativeTestsSuite" class="panel">
@@ -250,8 +271,12 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.herokuapp.theinternet.NegativeTests</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">incorrectUsernameTest</span>
+                <span class="method-name">negativeLoginTest(incorrect, SuperSecretPassword, Your username is invalid!)</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">negativeLoginTest(tomsmith, Super!, Your password is invalid!)</span>
+                <span class="method-start">8589 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
