@@ -4,35 +4,42 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTests {
 
-	@Test
-	public void positiveLoginTest() {
-		System.out.println("Starting loginTest");
+	private WebDriver driver;
+
+	@BeforeMethod(alwaysRun = true)
+	private void setUp() {
 
 		// Create driver
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-		WebDriver driver = new ChromeDriver();
+		driver = new ChromeDriver();
 
 		// sleep for 3 seconds
-		sleep(2000);
+		// sleep(2000);
 
 		// maximize browser window
 		driver.manage().window().maximize();
+	}
+
+	@Test(priority = 1, groups = { "postiveTests", "smokeTests" })
+	public void positiveLoginTest() {
+		System.out.println("Starting loginTest");
 
 		// open test page
-		sleep(2000);
+		// sleep(2000);
 		String url = "http://the-internet.herokuapp.com/login";
 		driver.get(url);
 		System.out.println("Page is opened.");
 
 		// sleep for 2 seconds
-		sleep(2000);
+		// sleep(2000);
 
 		// enter username
 		WebElement username = driver.findElement(By.id("username"));
@@ -42,7 +49,7 @@ public class LoginTests {
 		WebElement password = driver.findElement(By.name("password"));
 		password.sendKeys("SuperSecretPassword!");
 
-		sleep(2000);
+		// sleep(2000);
 		// click login button
 		WebElement logInButton = driver.findElement(By.tagName("button"));
 		logInButton.click();
@@ -67,22 +74,13 @@ public class LoginTests {
 				"Actual message does not contain expected message.\nActual Message " + actualMessage
 						+ "\nExpected Message: " + expectedMessage);
 
-		// close browser
-		driver.quit();
-
 	}
 
 	@Parameters({ "username", "password", "expectedMessage" })
-	@Test(priority = 1, groups = { "negativeTests", "smokeTests" })
+	@Test(priority = 2, groups = { "negativeTests", "smokeTests" })
 	public void negativeLoginTest(String username, String password, String expectedErrorMessage) {
 		System.out.println("Starting negativeLoginTest with " + username + " and " + password);
 		// Create driver
-
-		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
-		WebDriver driver = new FirefoxDriver();
-
-		// maximize browser window
-		driver.manage().window().maximize();
 
 		String url = "http://the-internet.herokuapp.com/login";
 		driver.get(url);
@@ -109,11 +107,8 @@ public class LoginTests {
 				"Actual error message does not contain expected error message.\nActual Message " + actualErrorMessage
 						+ "\nExpected Message: " + expectedErrorMessage);
 
-		// close browser
-		driver.quit();
 	}
 
-	
 	private void sleep(long m) {
 		try {
 			Thread.sleep(m);
@@ -123,4 +118,9 @@ public class LoginTests {
 		}
 	}
 
-} 
+	@AfterMethod(alwaysRun = true)
+	private void tearDown() {
+		// close browser
+		driver.quit();
+	}
+}
