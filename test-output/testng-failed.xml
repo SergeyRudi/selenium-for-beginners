@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [NegativeTestsSuite]">
+  <test thread-count="5" name="NegativePasswordTests(failed)">
+    <parameter name="password" value="Super!"/>
+    <parameter name="expectedMessage" value="Your password is invalid!"/>
+    <parameter name="username" value="tomsmith"/>
+    <classes>
+      <class name="com.herokuapp.theinternet.NegativeTests">
+        <methods>
+          <include name="negativeLoginTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.herokuapp.theinternet.NegativeTests -->
+    </classes>
+  </test> <!-- NegativePasswordTests(failed) -->
+</suite> <!-- Failed suite [NegativeTestsSuite] -->
