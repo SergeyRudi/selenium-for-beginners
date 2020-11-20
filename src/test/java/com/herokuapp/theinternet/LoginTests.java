@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -14,12 +16,28 @@ public class LoginTests {
 
 	private WebDriver driver;
 
+	@Parameters({ "browser" })
 	@BeforeMethod(alwaysRun = true)
-	private void setUp() {
+	private void setUp(@Optional("chrome") String browser) {
 
 		// Create driver
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-		driver = new ChromeDriver();
+		switch (browser) {
+		case "chrome":
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+			driver = new ChromeDriver();
+			break;
+
+		case "firefox":
+			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+			driver = new FirefoxDriver();
+			break;
+
+		default:
+			System.out.println("Do not know to start " + browser + ", starting  chrome instead");
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+			driver = new ChromeDriver();
+			break;
+		}
 
 		// sleep for 3 seconds
 		// sleep(2000);
